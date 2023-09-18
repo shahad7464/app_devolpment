@@ -19,90 +19,154 @@ class PhotoGallery extends StatelessWidget {
       appBar: AppBar(
         title: Text("Photo Gallery"),
         centerTitle: true,
-      ),      body: SingleChildScrollView(
+      ),
+      body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'Welcome to our Photo Gallery!',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            Container(
+              margin: const EdgeInsets.all(16.0),
+              child: const Text(
+                'Welcome to My Photo Gallery!',
+                style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextField(
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: const TextField(
                 decoration: InputDecoration(
-                  hintText: 'Search Photos...',
+                  hintText: 'Search for photos',
                   border: OutlineInputBorder(),
+                  contentPadding: EdgeInsets.all(12.0),
                 ),
               ),
             ),
-            GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                childAspectRatio: 1.0,
-              ),
-              itemCount: 6,
-              shrinkWrap: true,
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  onTap: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Photo ${index + 1} Clicked'),
-                      ),
-                    );
-                  },
-                  child: Card(
-                    elevation: 4,
-                    child: Column(
-                      children: [
-                        Image.network('https://images.pexels.com/photos/2361952/pexels-photo-2361952.jpeg?auto=compress&cs=tinysrgb&w=1200'),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text('Photo  ${index + 1}'),
-                        ),
-                      ],
-                    ),
+            Container(
+              margin: const EdgeInsets.all(18.0),
+              child: Wrap(
+                spacing: 15.0,
+                runSpacing: 12.0,
+                children: [
+                  _buildPhotoButton(
+                    imageUrl: 'https://images.pexels.com/photos/9954174/pexels-photo-9954174.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+                    caption: 'Photo 0',
+                    onPressed: () {
+                      _showSnackBar(context, 'Clicked on Photo 0!');
+                    },
                   ),
-                );
-              },
+                  _buildPhotoButton(
+                    imageUrl: 'https://images.pexels.com/photos/1170986/pexels-photo-1170986.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                    caption: 'Photo 1',
+                    onPressed: () {
+                      _showSnackBar(context, 'Clicked on Photo 1!');
+                    },
+                  ),
+                  _buildPhotoButton(
+                    imageUrl: 'https://images.pexels.com/photos/1317844/pexels-photo-1317844.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                    caption: 'Photo 2',
+                    onPressed: () {
+                      _showSnackBar(context, 'Clicked on Photo 2!');
+                    },
+                  ),
+                  _buildPhotoButton(
+                    imageUrl: 'https://images.pexels.com/photos/9954174/pexels-photo-9954174.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load',
+                    caption: 'Photo 3',
+                    onPressed: () {
+                      _showSnackBar(context, 'Clicked on Photo 3!');
+                    },
+                  ),
+                  _buildPhotoButton(
+                    imageUrl: 'https://images.pexels.com/photos/3777622/pexels-photo-3777622.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                    caption: 'Photo 4',
+                    onPressed: () {
+                      _showSnackBar(context, 'Clicked on Photo 4!');
+                    },
+                  ),
+                  _buildPhotoButton(
+                    imageUrl: 'https://images.pexels.com/photos/6897077/pexels-photo-6897077.jpeg?auto=compress&cs=tinysrgb&w=1200',
+                    caption: 'Photo 5',
+                    onPressed: () {
+                      _showSnackBar(context, 'Clicked on Photo 5!');
+                    },
+                  ),
+                ],
+              ),
             ),
-            ListTile(
+            const ListTile(
+
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage('https://images.pexels.com/photos/6897077/pexels-photo-6897077.jpeg?auto=compress&cs=tinysrgb&w=1200'),
+              ),
+              title: Text('Photo 1'),
+              subtitle: Text('Outstanding Pictures!'),
+            ),
+            const ListTile(
               leading: CircleAvatar(
                 backgroundImage: NetworkImage('https://images.pexels.com/photos/2361952/pexels-photo-2361952.jpeg?auto=compress&cs=tinysrgb&w=1200'),
               ),
-              title: Text('Photo 1'),
-              subtitle: Text('Nice Picture'),
-            ),
-            ListTile(
-              leading: CircleAvatar(
-                backgroundImage: NetworkImage('https://images.pexels.com/photos/2173872/pexels-photo-2173872.jpeg?auto=compress&cs=tinysrgb&w=1200'),
-              ),
               title: Text('Photo 2'),
-              subtitle: Text('Nice Picture'),
+              subtitle: Text('Nice Picture!'),
             ),
-            ListTile(
+            const ListTile(
               leading: CircleAvatar(
-                backgroundImage: NetworkImage('https://images.pexels.com/photos/3777622/pexels-photo-3777622.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'),
+                backgroundImage: NetworkImage('https://images.pexels.com/photos/1317844/pexels-photo-1317844.jpeg?auto=compress&cs=tinysrgb&w=1200'),
               ),
               title: Text('Photo 3'),
-              subtitle: Text('Excellent Picture'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Photos Uploaded Successfully!'),
-                  ),
-                );
-              },
-              child: Icon(Icons.upload),
+              subtitle: Text('Great Picture!'),
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _showSnackBar(context, 'Photos Uploaded Successfully!');
+        },
+        child: const Icon(Icons.upload),
+      ),
+    );
+  }
+
+  Widget _buildPhotoButton({
+    required String imageUrl,
+    required String caption,
+    required VoidCallback onPressed,
+  }) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(8.0)),
+            child: Image.network(
+              imageUrl,
+              width: 105.0,
+              height: 55.0,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(9.0),
+            child: Text(
+              caption,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
       ),
     );
   }
