@@ -39,7 +39,12 @@ class _ProductListState extends State<ProductList> {
     Product(name: 'MacBook', price: 1499),
     Product(name: 'MacBook Pro', price: 2099),
     Product(name: 'I Mac', price: 1699),
-    Product(name: 'Magic Mouse', price: 199),
+    Product(name: 'Samsung S20', price: 599),
+    Product(name: 'Samsung S20 Ultra', price: 999),
+    Product(name: 'Samsung S21', price: 699),
+    Product(name: 'Samsung S21 Ultra', price: 899),
+    Product(name: 'Samsung S22', price: 799),
+    Product(name: 'Samsung S22 Ultra', price: 1099),
 
   ];
 
