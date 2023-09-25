@@ -1,197 +1,154 @@
 import 'package:flutter/material.dart';
 
-main() {
-  runApp(
-    const MyApp(),
-  );
+void main() {
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: ProductList(),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Product List'),
+          centerTitle: true,
+        ),
+        body: ProductList(),
+      ),
     );
   }
 }
 
-class ProductList extends StatefulWidget {
-  const ProductList({Key? key}) : super(key: key);
+class Product {
+  final String name;
+  final double price;
+  int count;
 
-  @override
-  State<ProductList> createState() => _CounterScreenState();
+  Product({required this.name,required this.price, this.count =0 });
 }
 
-class _CounterScreenState extends State<ProductList> {
-  int counter = 0;
-  void incrementCounter() {}
+class ProductList extends StatefulWidget {
+  @override
+  _ProductListState createState() => _ProductListState();
+}
+
+class _ProductListState extends State<ProductList> {
+  List<Product> products = [
+    Product(name: 'Iphone 14 Pro Max', price: 1099),
+    Product(name: 'Iphone 15 Pro Maz', price: 1199),
+    Product(name: 'MacBook', price: 1499),
+    Product(name: 'MacBook Pro', price: 2099),
+    Product(name: 'I Mac', price: 1699),
+    Product(name: 'Magic Mouse', price: 199),
+
+  ];
+
+  void _incrementCount(int index) {
+    setState(() {
+      products[index].count++;
+      if (products[index].count == 5) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Congratulations!'),
+              content: Text('You have bought 5 ${products[index].name}'),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    });
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            itemCount: products.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(products[index].name),
+                subtitle: Text('\$${products[index].price.toStringAsFixed(2)}'),
+                trailing: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text('Count: ${products[index].count}'),
+                      ElevatedButton(onPressed:(){
+                        _incrementCount(index);
+                      }, child: Text('Buy Now'))
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            CircleAvatar(
+              backgroundColor: Colors.blue,
+              radius: 30,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  IconButton(onPressed: (){
+                    Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CartPage(products)),
+                    );
+                  }, icon: Icon(Icons.shopping_cart),iconSize: 30,color: Colors.white,),
+                ],
+              ),
+            )
+          ],
+        )
+
+      ],
+    );
+  }
+}
+
+class CartPage extends StatelessWidget {
+  final List<Product> cartProducts;
+
+  CartPage(this.cartProducts);
+
+  int _totalItemCount() {
+    int total = 0;
+    for (var product in cartProducts) {
+      total += product.count;
+    }
+    return total;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Product List'),
+        title: Text('Cart'),
         centerTitle: true,
       ),
-      body: ListView(
-        children: [
-          Divider(height: 15,),
-          ListTile(
-            leading: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Product No:1'),
-                Text('USD 10.00') ,
-              ],
-            ),
-            trailing: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                ElevatedButton(onPressed: null, child: Text('Buy Now')),
-
-              ],
-            )
-          ),
-          Divider(height: 20),
-          ListTile(
-            leading: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Product No:2'),
-                Text('USD 20.00'),
-              ],
-            ),
-            trailing:ElevatedButton(onPressed: null, child: Text('Buy Now')),
-          ),
-          Divider(height: 20),
-          ListTile(
-            leading: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Product No:3'),
-                Text('USD 25.00'),
-              ],
-            ),
-            trailing:ElevatedButton(onPressed: null, child: Text('Buy Now')),
-          ),
-          Divider(height: 10),
-          ListTile(
-            leading: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Product No: 4'),
-                Text('USD 30.00'),
-              ],
-            ),
-            trailing:ElevatedButton(onPressed: null, child: Text('Buy Now')),
-          ),
-          Divider(height: 10),
-          ListTile(
-            leading: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Product no:5'),
-                Text('USD 35.00'),
-              ],
-            ),
-            trailing:ElevatedButton(onPressed: null, child: Text('Buy Now')),
-          ),
-          Divider(height: 10),
-          ListTile(
-            leading: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Product no:6'),
-                Text('USD 40.00'),
-              ],
-            ),
-            trailing:ElevatedButton(onPressed: null, child: Text('Buy Now')),
-
-          ),
-          Divider(height: 10),
-          ListTile(
-            leading: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Product no:7'),
-                Text('USD 45.00'),
-              ],
-            ),
-            trailing:ElevatedButton(onPressed: null, child: Text('Buy Now')),
-          ),
-          Divider(height: 10),
-          ListTile(
-            leading: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Product no:7'),
-                Text('USD 45.00'),
-              ],
-            ),
-            trailing:ElevatedButton(onPressed: null, child: Text('Buy Now')),
-          ),
-          Divider(height: 10),
-          ListTile(
-            leading: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Product no:8'),
-                Text('USD 50.00'),
-              ],
-            ),
-            trailing:ElevatedButton(onPressed: null, child: Text('Buy Now')),
-          ),
-          Divider(height: 10,),
-          ListTile(
-            leading: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Product no:9'),
-                Text('USD 55.00'),
-              ],
-            ),
-            trailing:ElevatedButton(onPressed: null, child: Text('Buy Now')),
-          ),
-          Divider(height: 10,),
-          ListTile(
-            leading: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Product no:10'),
-                Text('USD 60.00'),
-              ],
-            ),
-            trailing:ElevatedButton(onPressed: null, child: Text('Buy Now')),
-          ),
-          Divider(height: 10,),
-          ListTile(
-            leading: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Product no:11'),
-                Text('USD 65.00'),
-              ],
-            ),
-            trailing:ElevatedButton(onPressed: null, child: Text('Buy Now')),
-          ),
-          Divider(height: 10,),
-          ListTile(
-            leading: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Product no:12'),
-                Text('USD 70.00'),
-              ],
-            ),
-            trailing:ElevatedButton(onPressed: null, child: Text('Buy Now')),
-          )
-
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Total Items in Cart: ${_totalItemCount()}'),
+          ],
+        ),
       ),
-
-     );
-
+    );
   }
 }
