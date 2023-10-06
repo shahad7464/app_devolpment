@@ -1,139 +1,100 @@
 import 'package:flutter/material.dart';
 
-class PortraitScreenLayout extends StatelessWidget {
-  const PortraitScreenLayout({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final screenSize = MediaQuery.sizeOf(context);
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              children: [
-                CircleAvatar(
-                  backgroundColor: Colors.green,
-                  radius: screenSize.width / 2,
-                  child: CircleAvatar(
-                    radius: (screenSize.width / 2),
-                    backgroundImage: const NetworkImage(
-                        'https://miro.medium.com/v2/resize:fit:1080/0*pw9xsKqnq2dkGT4P'),
-                  ),
-                ),
-                const Text(
-                  'One Piece',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            const Text(
-              'One Piece is is a Japanese Anime Series.The story follows the adventure of Monkey D.Luffy a boy whose body gained the properties of rubber after unintentionally eating a Devil Fruit.',
-              style: TextStyle(
-                color: Colors.teal,
-                fontWeight: FontWeight.bold
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            GridView.count(
-              physics: const ScrollPhysics(),
-              crossAxisSpacing: 8,
-              mainAxisSpacing: 8,
-              shrinkWrap: true,
-              crossAxisCount: 3,
-              children: [
-                for (int i = 1; i <= 12; i++)
-                  Image.asset(
-                      "assets/images/shanks.jpg",
-                      fit: BoxFit.fill),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class LandscapeScreenLayout extends StatelessWidget {
-  const LandscapeScreenLayout({super.key});
-
+class _HomeScreenState extends State<HomeScreen> {
+  bool pressed = false;
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.sizeOf(context);
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          CircleAvatar(
-            backgroundColor: Colors.green,
-            radius: screenSize.width / 6,
-            child: CircleAvatar(
-              radius: (screenSize.width / 6),
-              backgroundImage: const NetworkImage(
-                  'https://miro.medium.com/v2/resize:fit:1080/0*pw9xsKqnq2dkGT4P'),
-            ),
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          SingleChildScrollView(
-            child: SizedBox(
-              width: (screenSize.width) - (screenSize.width / 3) - 26,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Size Selector'),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Row(
                 children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    'One Piece',
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        pressed = !pressed;
+                      });
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.all(8),
+                      height: 40,
+                      width: 70,
+                      decoration: pressed
+                          ? const BoxDecoration(color: Colors.amber)
+                          : BoxDecoration(color: Colors.grey.shade500),
+                      alignment: Alignment.center,
+                      child: Text('S', style: TextStyle(color: Colors.white),),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    'One Piece is is a Japanese Anime Series.The story follows the adventure of Monkey D.Luffy a boy whose body gained the properties of rubber after unintentionally eating a Devil Fruit.',
-                    style: TextStyle(
-                      color: Colors.teal,
-                      fontWeight: FontWeight.bold,
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        pressed = !pressed;
+                      });
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.all(8),
+                      height: 40,
+                      width: 70,
+                      decoration: pressed
+                          ? const BoxDecoration(color: Colors.amber)
+                          : BoxDecoration(color: Colors.grey.shade500),
+                      alignment: Alignment.center,
+                      child: Text('M', style: TextStyle(color: Colors.white),),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        pressed = !pressed;
+                      });
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.all(8),
+                      height: 40,
+                      width: 70,
+                      decoration: pressed
+                          ? const BoxDecoration(color: Colors.amber)
+                          : BoxDecoration(color: Colors.grey.shade300),
+                      alignment: Alignment.center,
+                      child: Text('L'),
+                    ),
                   ),
-                  GridView.count(
-                    physics: const ScrollPhysics(),
-                    crossAxisSpacing: 8,
-                    mainAxisSpacing: 8,
-                    shrinkWrap: true,
-                    crossAxisCount: 3,
-                    children: [
-                      for (int i = 1; i <= 12; i++)
-                        Image.asset(
-                          "assets/images/shanks.jpg",
-                        ),
-                    ],
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        pressed = !pressed;
+                      });
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.all(8),
+                      height: 40,
+                      width: 70,
+                      decoration: pressed
+                          ? const BoxDecoration(color: Colors.amber)
+                          : BoxDecoration(color: Colors.grey.shade300),
+                      alignment: Alignment.center,
+                      child: Text('XL'),
+                    ),
                   ),
                 ],
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
