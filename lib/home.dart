@@ -17,82 +17,176 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
       ),
       body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        pressed = !pressed;
-                      });
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.all(8),
-                      height: 40,
-                      width: 70,
-                      decoration: pressed
-                          ? const BoxDecoration(color: Colors.amber)
-                          : BoxDecoration(color: Colors.grey.shade500),
-                      alignment: Alignment.center,
-                      child: Text('S', style: TextStyle(color: Colors.white),),
+        child: Padding(
+          padding: const EdgeInsets.all(30.0),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        final snackBar = SnackBar(content: const Text('The Size is S!'),
+                          backgroundColor: (Colors.black),
+                          action: SnackBarAction(label: 'close',onPressed: () {  },
+
+                          ),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      },
+                      style:ButtonStyle(
+                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                              (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.pressed)) {
+                              return Colors.amber;
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      child: const Text(
+                        '  S  ',
+                        style: TextStyle(fontSize: 24),
+                      ),
                     ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        pressed = !pressed;
-                      });
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.all(8),
-                      height: 40,
-                      width: 70,
-                      decoration: pressed
-                          ? const BoxDecoration(color: Colors.amber)
-                          : BoxDecoration(color: Colors.grey.shade500),
-                      alignment: Alignment.center,
-                      child: Text('M', style: TextStyle(color: Colors.white),),
+                    const SizedBox(width: 20,),
+                    ElevatedButton(
+                      onPressed: () {
+                        final snackBar = SnackBar(content: const Text('The Size is M!'),
+                          backgroundColor: (Colors.black),
+                          action: SnackBarAction(label: 'close',onPressed: () {  },
+
+                          ),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      },
+                      style: ButtonStyle(
+                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                              (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.pressed)) {
+                              return Colors.amber;
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      child: const Text(
+                        'M',
+                        style: TextStyle(fontSize: 24),
+                      ),
                     ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        pressed = !pressed;
-                      });
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.all(8),
-                      height: 40,
-                      width: 70,
-                      decoration: pressed
-                          ? const BoxDecoration(color: Colors.amber)
-                          : BoxDecoration(color: Colors.grey.shade300),
-                      alignment: Alignment.center,
-                      child: Text('L'),
+                    const SizedBox(width: 20,),
+                    ElevatedButton(
+                      onPressed: () {
+                        final snackBar = SnackBar(content: const Text('The Size is L!'),
+                          backgroundColor: (Colors.black),
+                          action: SnackBarAction(label: 'close',onPressed: () {},
+
+                          ),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      },
+                      style: ButtonStyle(
+                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                              (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.pressed)) {
+                              return Colors.amber;
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      child: const Text(
+                        'L',
+                        style: TextStyle(fontSize: 24),
+                      ),
                     ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        pressed = !pressed;
-                      });
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.all(8),
-                      height: 40,
-                      width: 70,
-                      decoration: pressed
-                          ? const BoxDecoration(color: Colors.amber)
-                          : BoxDecoration(color: Colors.grey.shade300),
-                      alignment: Alignment.center,
-                      child: Text('XL'),
+                    const SizedBox(width: 20,),
+                    ElevatedButton(
+                      onPressed: () {
+                        final snackBar = SnackBar(content: const Text('The Size is XL!'),
+                          backgroundColor: (Colors.black),
+                          action: SnackBarAction(label: 'close',onPressed: () {},
+
+                          ),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      },
+                      style: ButtonStyle(
+                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                              (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.pressed)) {
+                              return Colors.amber;
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      child: const Text(
+                        'XL',
+                        style: TextStyle(fontSize: 24),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+                Row(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        final snackBar = SnackBar(content: const Text('The Size is XXL!'),
+                          backgroundColor: (Colors.black),
+                          action: SnackBarAction(label: 'close',onPressed: () {},
+
+                          ),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      },
+                      style: ButtonStyle(
+                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                              (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.pressed)) {
+                              return Colors.amber;
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      child: const Text(
+                        'XXL',
+                        style: TextStyle(fontSize: 24),
+                      ),
+                    ),
+                    const SizedBox(width: 20,),
+                    ElevatedButton(
+                      onPressed: () {
+                        final snackBar = SnackBar(content: const Text('The Size is XXXL!'),
+                          backgroundColor: (Colors.black),
+                          action: SnackBarAction(label: 'close',onPressed: () { },
+
+                          ),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      },
+                      style: ButtonStyle(
+                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                              (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.pressed)) {
+                              return Colors.amber;
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      child: const Text(
+                        'XXXL',
+                        style: TextStyle(fontSize: 24),
+                      ),
+                    ),
+                  ],
+
+                ),
+              ],
+            ),
           ),
         ),
       ),
