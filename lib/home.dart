@@ -10,7 +10,6 @@ class SelectionScreen extends StatefulWidget {
   const SelectionScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _SelectionScreenState createState() => _SelectionScreenState();
 }
 
