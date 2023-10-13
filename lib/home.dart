@@ -1,194 +1,76 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class ListItem {
+  String title;
+  bool selected;
+
+  ListItem({required this.title, this.selected = false});
+}
+class SelectionScreen extends StatefulWidget {
+  const SelectionScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  // ignore: library_private_types_in_public_api
+  _SelectionScreenState createState() => _SelectionScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  bool pressed = false;
+class _SelectionScreenState extends State<SelectionScreen> {
+  List<ListItem> items = [
+    ListItem(title: 'Nike AirForce One'),
+    ListItem(title: 'Nike Air Jordan 1'),
+    ListItem(title: 'Nike Air Jordan Swoosh'),
+    ListItem(title: 'Nike AirForce 2nd Gen'),
+    ListItem(title: 'Nike Air Jordan 2K02'),
+  ];
+  int selectedItemCounts = 0;
+
+  void selectedItemCount() {
+    selectedItemCounts = items.where((item) => item.selected).length;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Size Selector'),
-        centerTitle: true,
+        title: const Text('Selection Screen'),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(30.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        final snackBar = SnackBar(content: const Text('The Size is S!'),
-                          backgroundColor: (Colors.black),
-                          action: SnackBarAction(label: 'close',onPressed: () {  },
-
-                          ),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      },
-                      style:ButtonStyle(
-                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                              (Set<MaterialState> states) {
-                            if (states.contains(MaterialState.pressed)) {
-                              return Colors.amber;
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                      child: const Text(
-                        '  S  ',
-                        style: TextStyle(fontSize: 24),
-                      ),
-                    ),
-                    const SizedBox(width: 20,),
-                    ElevatedButton(
-                      onPressed: () {
-                        final snackBar = SnackBar(content: const Text('The Size is M!'),
-                          backgroundColor: (Colors.black),
-                          action: SnackBarAction(label: 'close',onPressed: () {  },
-
-                          ),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      },
-                      style: ButtonStyle(
-                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                              (Set<MaterialState> states) {
-                            if (states.contains(MaterialState.pressed)) {
-                              return Colors.amber;
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                      child: const Text(
-                        'M',
-                        style: TextStyle(fontSize: 24),
-                      ),
-                    ),
-                    const SizedBox(width: 20,),
-                    ElevatedButton(
-                      onPressed: () {
-                        final snackBar = SnackBar(content: const Text('The Size is L!'),
-                          backgroundColor: (Colors.black),
-                          action: SnackBarAction(label: 'close',onPressed: () {},
-
-                          ),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      },
-                      style: ButtonStyle(
-                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                              (Set<MaterialState> states) {
-                            if (states.contains(MaterialState.pressed)) {
-                              return Colors.amber;
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                      child: const Text(
-                        'L',
-                        style: TextStyle(fontSize: 24),
-                      ),
-                    ),
-                    const SizedBox(width: 20,),
-                    ElevatedButton(
-                      onPressed: () {
-                        final snackBar = SnackBar(content: const Text('The Size is XL!'),
-                          backgroundColor: (Colors.black),
-                          action: SnackBarAction(label: 'close',onPressed: () {},
-
-                          ),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      },
-                      style: ButtonStyle(
-                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                              (Set<MaterialState> states) {
-                            if (states.contains(MaterialState.pressed)) {
-                              return Colors.amber;
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                      child: const Text(
-                        'XL',
-                        style: TextStyle(fontSize: 24),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        final snackBar = SnackBar(content: const Text('The Size is XXL!'),
-                          backgroundColor: (Colors.black),
-                          action: SnackBarAction(label: 'close',onPressed: () {},
-
-                          ),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      },
-                      style: ButtonStyle(
-                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                              (Set<MaterialState> states) {
-                            if (states.contains(MaterialState.pressed)) {
-                              return Colors.amber;
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                      child: const Text(
-                        'XXL',
-                        style: TextStyle(fontSize: 24),
-                      ),
-                    ),
-                    const SizedBox(width: 20,),
-                    ElevatedButton(
-                      onPressed: () {
-                        final snackBar = SnackBar(content: const Text('The Size is XXXL!'),
-                          backgroundColor: (Colors.black),
-                          action: SnackBarAction(label: 'close',onPressed: () { },
-
-                          ),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      },
-                      style: ButtonStyle(
-                        overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                              (Set<MaterialState> states) {
-                            if (states.contains(MaterialState.pressed)) {
-                              return Colors.amber;
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                      child: const Text(
-                        'XXXL',
-                        style: TextStyle(fontSize: 24),
-                      ),
-                    ),
-                  ],
-
-                ),
-              ],
-            ),
-          ),
-        ),
+      body: ListView.builder(
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(items[index].title),
+            onTap: () {
+              setState(() {
+                items[index].selected = !items[index].selected;
+                selectedItemCount();
+              });
+            },
+            tileColor: items[index].selected ? Colors.teal : null,
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text('Selected Items',style: TextStyle(color: Colors.teal),),
+                content: Text('Number of selected items: $selectedItemCounts'),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Close',style: TextStyle(color: Colors.teal),),
+                  ),
+                ],
+              );
+            },
+          );
+        },
+        backgroundColor: Colors.teal,
+        child: const Icon(Icons.check),
       ),
     );
   }

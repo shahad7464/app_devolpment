@@ -3,23 +3,23 @@ import 'home.dart';
 
 void main() {
   runApp(
-    const MyApp(),
+    const NikeBangladeshApp(),
   );
+
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class NikeBangladeshApp extends StatelessWidget {
+  const NikeBangladeshApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return  MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.teal,
         appBarTheme: const AppBarTheme(
           color: Colors.teal,
         )
       ),
-      home: const HomeScreen(),
+      home: const SelectionScreen(),
     );
   }
 }
