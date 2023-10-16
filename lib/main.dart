@@ -3,23 +3,20 @@ import 'home.dart';
 
 void main() {
   runApp(
-    const NikeBangladeshApp(),
+    const ToDoApp(),
   );
-
 }
 
-class NikeBangladeshApp extends StatelessWidget {
-  const NikeBangladeshApp({super.key});
+class ToDoApp extends StatelessWidget {
+  const ToDoApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          color: Colors.teal,
-        )
+        primarySwatch: Colors.cyan,
       ),
-      home: const SelectionScreen(),
+      home:  const ToDoList(),
     );
   }
 }
