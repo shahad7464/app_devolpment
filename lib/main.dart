@@ -1,7 +1,6 @@
-
+import 'package:crud_api/screens/weatherListScreen.dart';
 import 'package:crud_api/widgets/weather.dart';
-import 'package:crud_api/widgets/weather_service.dart';
-import 'package:crud_api/widgets/weatherlist.dart';
+import 'package:crud_api/widgets/weather_information.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -35,9 +34,9 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Weather App'),
+          title: const Text('Weather Info App'),
         ),
-        body: WeatherList(_weatherData),
+        body: WeatherListScreen(_weatherData),
       ),
     );
   }
