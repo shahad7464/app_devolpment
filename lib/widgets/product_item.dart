@@ -1,8 +1,13 @@
 import 'package:flutter_app_development/screens/add_new_product_screen.dart';
+import 'package:flutter_app_development/screens/product.dart';
 import 'package:flutter/material.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({super.key});
+  const ProductItem(
+      {super.key, required this.product, required this.onPressDelete});
+
+  final Product product;
+  final Function(String) onPressDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -15,24 +20,19 @@ class ProductItem extends StatelessWidget {
             });
       },
       leading: Image.network(
-        'https://cdn.shopify.com/s/files/1/0059/0630/1017/t/5/assets/keychronv1custommechanicalkeyboard27-1657706139851.jpg?v=1657706183',
+        product.image,
         width: 80,
       ),
-      title: const Text('Product name'),
-      subtitle: const Column(
+      title: Text(product.productName),
+      subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Text('Product code'),
-              SizedBox(width: 24,),
-              Text('Total price'),
-            ],
-          ),
-          Text('Product description'),
+          Text(product.productCode),
+          Text('Total price : ${product.totalPRice}'),
+          Text('Quantity : ${product.quantity}'),
         ],
       ),
-      trailing: const Text('\$120'),
+      trailing: Text('\$${product.unitPRice}'),
     );
   }
 
@@ -50,7 +50,9 @@ class ProductItem extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const AddNewProductScreen(),
+                  builder: (context) => AddNewProductScreen(
+                    product: product,
+                  ),
                 ),
               );
             },
@@ -63,6 +65,7 @@ class ProductItem extends StatelessWidget {
             leading: const Icon(Icons.delete_outline),
             onTap: () {
               Navigator.pop(context);
+              onPressDelete(product.id);
             },
           ),
         ],
