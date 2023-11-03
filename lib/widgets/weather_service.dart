@@ -3,7 +3,7 @@ import 'package:crud_api/widgets/weather.dart';
 
 class WeatherService {
   Future<List<Weather>> getWeatherData() async {
-    final String jsonData = '''
+    const String jsonData = '''
       [
         {
           "city": "New York",

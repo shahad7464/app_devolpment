@@ -4,7 +4,7 @@ import 'weather.dart';
 class WeatherList extends StatelessWidget {
   final List<Weather> weatherData;
 
-  WeatherList(this.weatherData);
+  const WeatherList(this.weatherData, {super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,14 @@
 
 import 'package:crud_api/widgets/weather.dart';
+import 'package:crud_api/widgets/weather_service.dart';
 import 'package:crud_api/widgets/weatherlist.dart';
 import 'package:flutter/material.dart';
-import 'weather_service.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -33,7 +35,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Weather App'),
+          title: const Text('Weather App'),
         ),
         body: WeatherList(_weatherData),
       ),
