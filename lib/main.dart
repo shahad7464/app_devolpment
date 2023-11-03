@@ -1,22 +1,17 @@
+import 'package:flutter_app_development/screens/product_list_screen.dart';
 import 'package:flutter/material.dart';
-import 'home.dart';
 
 void main() {
-  runApp(
-    const ToDoApp(),
-  );
+  runApp(const CrudApp());
 }
 
-class ToDoApp extends StatelessWidget {
-  const ToDoApp({super.key});
+class CrudApp extends StatelessWidget {
+  const CrudApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.cyan,
-      ),
-      home:  const ToDoList(),
+    return const MaterialApp(
+      home: ProductListScreen(),
     );
   }
 }
