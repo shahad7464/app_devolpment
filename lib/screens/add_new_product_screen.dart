@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 
 import 'package:flutter_app_development/screens/product.dart';
@@ -37,7 +39,6 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
       "UnitPrice": _priceTEController.text.trim(),
     };
 
-    print(inputMap);
 
     final Response response = await post(
         Uri.parse('https://crud.teamrabbil.com/api/v1/CreateProduct'),
@@ -46,8 +47,6 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
         },
         body: jsonEncode(inputMap)
     );
-    print(response.request?.url);
-    print(response.statusCode);
     if (response.statusCode == 200) {
       _priceTEController.clear();
       _titleTEController.clear();
@@ -55,14 +54,16 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
       _quantityTEController.clear();
       _totalPriceTEController.clear();
       _productCodeTEController.clear();
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Product has been added'),
         ),
       );
     } else if (response.statusCode == 400) {
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Product code should be unique'),
         ),
       );
@@ -101,8 +102,6 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
         },
         body: jsonEncode(product.toJson())
     );
-    print(response.request?.url);
-    print(response.statusCode);
     if (response.statusCode == 200) {
       _priceTEController.clear();
       _titleTEController.clear();
@@ -111,13 +110,13 @@ class _AddNewProductScreenState extends State<AddNewProductScreen> {
       _totalPriceTEController.clear();
       _productCodeTEController.clear();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Product has been updated'),
         ),
       );
     } else if (response.statusCode == 400) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Product code should be unique'),
         ),
       );
