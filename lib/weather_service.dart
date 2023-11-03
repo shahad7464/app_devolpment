@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:crud_api/widgets/weather.dart';
-import 'package:http/http.dart as http;
 
 class WeatherService {
   Future<List<Weather>> getWeatherData() async {
