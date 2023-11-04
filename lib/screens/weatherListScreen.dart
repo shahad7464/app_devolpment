@@ -17,7 +17,7 @@ class WeatherListScreen extends StatelessWidget {
           child: Card(
             child: ListTile(
               title: Text(
-                  'City: ${weather.city}',
+                'City: ${weather.city}',
                 style: const TextStyle(fontWeight: FontWeight.w500),
               ),
               subtitle: Text(
